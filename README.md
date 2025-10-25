@@ -249,22 +249,4 @@ The app is a Progressive Web App with:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-- [Next.js](https://nextjs.org/) - React framework
-- [Three.js](https://threejs.org/) - 3D graphics library
-- [Framer Motion](https://www.framer.com/motion/) - Animation library
-- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
-- [Vercel](https://vercel.com/) - Deployment platform
-
-## 📞 Contact
-
-- **Email**: developer@example.com
-- **GitHub**: [@developer](https://github.com/developer)
-- **LinkedIn**: [developer](https://linkedin.com/in/developer)
-- **Portfolio**: [devspace-terminal.vercel.app](https://devspace-terminal.vercel.app)
-
----
-
-Made with ❤️ and lots of ☕ by [Developer](https://github.com/developer)
 
