@@ -1,0 +1,60 @@
+{
+    "name": "devspace-terminal",
+    "version": "1.0.0",
+    "description": "A terminal-themed portfolio website with 3D elements and interactive features",
+    "private": true,
+    "engines": {
+        "node": ">=18.0.0",
+        "npm": ">=8.0.0"
+    },
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "lint:fix": "next lint --fix",
+        "type-check": "tsc --noEmit",
+        "prebuild": "npm run type-check",
+        "clean": "rimraf .next"
+    },
+    "dependencies": {
+        "@react-three/drei": "^9.122.0",
+        "@react-three/fiber": "^8.18.0",
+        "@tailwindcss/forms": "^0.5.0",
+        "@tailwindcss/typography": "^0.5.0",
+        "@types/node": "^20.0.0",
+        "@types/react": "^18.2.0",
+        "@types/react-dom": "^18.2.0",
+        "@types/react-syntax-highlighter": "^15.5.0",
+        "autoprefixer": "^10.4.0",
+        "class-variance-authority": "^0.7.0",
+        "clsx": "^2.0.0",
+        "date-fns": "^2.30.0",
+        "framer-motion": "^10.16.0",
+        "lucide-react": "^0.292.0",
+        "next": "^14.0.0",
+        "postcss": "^8.4.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-hotkeys-hook": "^4.4.0",
+        "react-intersection-observer": "^9.5.0",
+        "react-syntax-highlighter": "^15.5.0",
+        "react-use": "^17.4.0",
+        "recharts": "^2.8.0",
+        "tailwindcss": "^3.3.0",
+        "three": "^0.180.0",
+        "typescript": "^5.0.0",
+        "zustand": "^4.4.0"
+    },
+    "devDependencies": {
+        "@tailwindcss/aspect-ratio": "^0.4.2",
+        "@types/three": "^0.158.0",
+        "cssnano": "^6.0.0",
+        "eslint": "^8.0.0",
+        "eslint-config-next": "^14.0.0",
+        "glslify-loader": "^2.0.0",
+        "raw-loader": "^4.0.2",
+        "rimraf": "^5.0.0",
+        "tailwind-scrollbar": "^3.0.0"
+    }
+}

@@ -1,0 +1,499 @@
+/* ========================================
+   Terminal Styles - DevSpace Terminal
+======================================== */
+
+/* ============= Variables ============= */
+:root {
+  --terminal-bg: #0a0a0a;
+  --terminal-text: #00ff41;
+  --terminal-accent: #00ff41;
+  --terminal-error: #ff0040;
+  --terminal-warning: #ffaa00;
+  --terminal-info: #0080ff;
+  --terminal-border: rgba(0, 255, 65, 0.2);
+  --terminal-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+  --terminal-radius: 8px;
+  --terminal-font: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+}
+
+/* ============= Terminal Container ============= */
+.terminal-container {
+  background: var(--terminal-bg);
+  border: 1px solid var(--terminal-border);
+  border-radius: var(--terminal-radius);
+  box-shadow: var(--terminal-shadow);
+  font-family: var(--terminal-font);
+  color: var(--terminal-text);
+  overflow: hidden;
+  position: relative;
+  will-change: transform;
+}
+
+.terminal-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 65, 0.02) 0%,
+    transparent 50%,
+    rgba(0, 255, 65, 0.02) 100%
+  );
+  pointer-events: none;
+}
+
+/* ============= Terminal Header ============= */
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: rgba(0, 255, 65, 0.05);
+  border-bottom: 1px solid var(--terminal-border);
+  font-size: 0.875rem;
+}
+
+.terminal-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.control {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.control.close {
+  background: #ff5f57;
+}
+
+.control.minimize {
+  background: #ffbd2e;
+}
+
+.control.maximize {
+  background: #28ca42;
+}
+
+.control:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+.terminal-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.terminal-icon {
+  font-size: 1rem;
+  animation: pulse 2s infinite;
+}
+
+.terminal-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: blink 1s infinite;
+}
+
+.status-indicator.online {
+  background: var(--terminal-accent);
+}
+
+.status-indicator.offline {
+  background: var(--terminal-error);
+}
+
+/* ============= Terminal Body ============= */
+.terminal-body {
+  padding: 1rem;
+  min-height: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--terminal-accent) transparent;
+}
+
+.terminal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+  background: var(--terminal-accent);
+  border-radius: 3px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 65, 0.8);
+}
+
+.terminal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ============= Command Line ============= */
+.command-line-container {
+  position: relative;
+}
+
+.command-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--terminal-font);
+  line-height: 1.5;
+}
+
+.command-prompt {
+  color: var(--terminal-accent);
+  font-weight: 600;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.prompt-user {
+  color: #00ff41;
+}
+
+.prompt-separator {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.prompt-host {
+  color: #0080ff;
+}
+
+.prompt-path {
+  color: #ffaa00;
+}
+
+.prompt-symbol {
+  color: var(--terminal-accent);
+  margin-left: 0.25rem;
+}
+
+.command-input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.command-input {
+  background: transparent;
+  border: none;
+  color: var(--terminal-text);
+  font-family: inherit;
+  font-size: inherit;
+  width: 100%;
+  outline: none;
+  caret-color: transparent;
+}
+
+.command-display {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  white-space: pre;
+  color: var(--terminal-text);
+}
+
+.command-text {
+  display: inline-block;
+}
+
+/* ============= Typing Indicator ============= */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(0, 255, 65, 0.7);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.typing-dots {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.typing-dots .dot {
+  width: 4px;
+  height: 4px;
+  background: var(--terminal-accent);
+  border-radius: 50%;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.typing-dots .dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-dots .dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+.typing-dots .dot:nth-child(3) {
+  animation-delay: 0s;
+}
+
+/* ============= Output Styles ============= */
+.output-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.output-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.output-item.command {
+  color: var(--terminal-text);
+}
+
+.output-item.output {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.output-item.error {
+  color: var(--terminal-error);
+}
+
+.output-item.info {
+  color: var(--terminal-info);
+}
+
+.output-timestamp {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  margin-right: 0.5rem;
+}
+
+.output-content {
+  flex: 1;
+  white-space: pre-wrap;
+}
+
+/* ============= Terminal Footer ============= */
+.terminal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 255, 65, 0.03);
+  border-top: 1px solid var(--terminal-border);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.terminal-info {
+  display: flex;
+  gap: 1rem;
+}
+
+.info-item {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.info-label {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.info-value {
+  color: var(--terminal-accent);
+}
+
+.terminal-help {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ============= Animations ============= */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 5px var(--terminal-accent);
+  }
+  50% {
+    text-shadow: 
+      0 0 10px var(--terminal-accent),
+      0 0 20px var(--terminal-accent),
+      0 0 30px var(--terminal-accent);
+  }
+}
+
+/* ============= Responsive Design ============= */
+@media (max-width: 768px) {
+  .terminal-header {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .terminal-body {
+    padding: 0.75rem;
+    max-height: 60vh;
+  }
+  
+  .terminal-footer {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.625rem;
+  }
+  
+  .terminal-info {
+    gap: 0.5rem;
+  }
+  
+  .terminal-help {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .terminal-controls {
+    display: none;
+  }
+  
+  .terminal-title {
+    font-size: 0.875rem;
+  }
+  
+  .command-line {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .command-prompt {
+    font-size: 0.75rem;
+  }
+}
+
+/* ============= Print Styles ============= */
+@media print {
+  .terminal-container {
+    border: 1px solid #000;
+    box-shadow: none;
+    background: #fff;
+    color: #000;
+  }
+  
+  .terminal-header,
+  .terminal-footer {
+    display: none;
+  }
+  
+  .command-line,
+  .output-item {
+    color: #000;
+  }
+  
+  .typing-indicator {
+    display: none;
+  }
+}
+
+/* ============= Screen Reader Only ============= */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============= Focus Styles ============= */
+.command-input:focus {
+  outline: 2px solid var(--terminal-accent);
+  outline-offset: 2px;
+}
+
+.control:focus {
+  outline: 2px solid var(--terminal-accent);
+  outline-offset: 2px;
+}
+
+/* ============= High Contrast Mode ============= */
+@media (prefers-contrast: high) {
+  :root {
+    --terminal-bg: #000;
+    --terminal-text: #fff;
+    --terminal-accent: #fff;
+    --terminal-border: #fff;
+  }
+}
+
+/* ============= Reduced Motion ============= */
+@media (prefers-reduced-motion: reduce) {
+  .terminal-container {
+    animation: none;
+  }
+  
+  .terminal-icon,
+  .status-indicator,
+  .typing-dots .dot {
+    animation: none;
+  }
+  
+  .control:hover {
+    transform: none;
+  }
+}
